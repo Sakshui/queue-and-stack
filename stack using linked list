@@ -1,0 +1,76 @@
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedListStack {
+    private Node top;
+
+    public LinkedListStack() {
+        top = null; // Stack is initially empty
+    }
+
+    // Add an item to the top of the stack
+    public void push(int item) {
+        Node newNode = new Node(item);
+        newNode.next = top;
+        top = newNode;
+    }
+
+    // Remove and return the top item from the stack
+    public int pop() {
+        if (top == null) {
+            System.out.println("Stack is empty");
+            return -1; // Or throw an exception
+        }
+        int item = top.data;
+        top = top.next;
+        return item;
+    }
+
+    // Return the top item without removing it
+    public int peek() {
+        if (top == null) {
+            System.out.println("Stack is empty");
+            return -1; // Or throw an exception
+        }
+        return top.data;
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+        return top == null;
+    }
+
+    // Get the size of the stack
+    public int size() {
+        int count = 0;
+        Node current = top;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+}
+
+// Example usage
+public class Main {
+    public static void main(String[] args) {
+        LinkedListStack stack = new LinkedListStack();
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        System.out.println("Top item: " + stack.peek());
+        System.out.println("Popped: " + stack.pop());
+        System.out.println("New top item: " + stack.peek());
+        System.out.println("Stack size: " + stack.size());
+    }
+}
